@@ -197,6 +197,7 @@ else {
 print(colI)
 
    # ajustement sortie de range à 0% hedge
+   # attention code faux à revoir
   #  expo_top<-((colD/(colB[1]*(1+range/100))-COL_F)*PARAM)/(colD/(colB[1]*(1+range/100)))
   #  expo_low<-(COL_FF-colD/(colB[1]*(1-range/100)))*PARAM/(colD/(colB[1]*(1-range/100)))
 #print (expo_top)
