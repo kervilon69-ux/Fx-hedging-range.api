@@ -197,15 +197,15 @@ else {
 print(colI)
 
    # ajustement sortie de range à 0% hedge
-    expo_top<-((colD/(colB[1]*(1+range/100))-COL_F)*PARAM)/(colD/(colB[1]*(1+range/100)))
-    expo_low<-(COL_FF-colD/(colB[1]*(1-range/100)))*PARAM/(colD/(colB[1]*(1-range/100)))
-print (expo_top)
-print (expo_low)
+  #  expo_top<-((colD/(colB[1]*(1+range/100))-COL_F)*PARAM)/(colD/(colB[1]*(1+range/100)))
+  #  expo_low<-(COL_FF-colD/(colB[1]*(1-range/100)))*PARAM/(colD/(colB[1]*(1-range/100)))
+#print (expo_top)
+#print (expo_low)
     
-    colI<- ifelse(colB[i]>=(colB[1]*(1+range/100)),colI+(1-expo_top),colI)
-    colI<- ifelse(colB[i]<=(colB[1]*(1-range/100)),colI+(1-expo_low),colI)
-    colI<-min(max(colI,0),1)
-     print(colI)
+ #   colI<- ifelse(colB[i]>=(colB[1]*(1+range/100)),colI+(1-expo_top),colI)
+  #  colI<- ifelse(colB[i]<=(colB[1]*(1-range/100)),colI+(1-expo_low),colI)
+  #  colI<-min(max(colI,0),1)
+   #  print(colI)
 
 
     if (i == 1) {      # l'expo ne peut pas augmenter lorsqu'elle a baissé
