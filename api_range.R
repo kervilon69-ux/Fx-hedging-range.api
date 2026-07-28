@@ -192,21 +192,23 @@ else {
 # calcul position avec cushion bas ou cushion haut (min des deux)
     colI <- ifelse(is.na(colH), NA, min(max(colGGG * PARAM / colH, 0), 1))
 
-    colI<- ifelse (colB[i]<=(colB[1]*(1+range/100)) & colB[i]>=(colB[1]*(1-range/100)),1, colI) # à l'intérieur du range l'expo est de 1 sinon expo
+    colI<- ifelse (colB[i]<=(colB[1]*(1+range/100)) & colB[i]>=(colB[1]*(1-range/100)),0.9, colI) # à l'intérieur du range l'expo est de 0.9 sinon expo
 
 print(colI)
 
-   # ajustement sortie de range à 0% hedge
-   # attention code faux à revoir
-  #  expo_top<-((colD/(colB[1]*(1+range/100))-COL_F)*PARAM)/(colD/(colB[1]*(1+range/100)))
-  #  expo_low<-(COL_FF-colD/(colB[1]*(1-range/100)))*PARAM/(colD/(colB[1]*(1-range/100)))
-#print (expo_top)
-#print (expo_low)
+ # ajustement sortie de range à - x% hedge - enlever les # dessous sans aucun autre changement
+    ##expo_top<-((colD/(colB[1]*(1+range/100))-COL_F)*9)/(colD/(colB[1]*(1+range/100)))
+    ##expo_low<-(COL_FF-colD/(colB[1]*(1-range/100)))*9/(colD/(colB[1]*(1-range/100)))
+    expo_top<-if (range<=3) {(expo_top<-1-15*range/100)} else {expo_top<-0.55} # sortie de range corrigée selon range de 0% à 3% - range 1% = correction 15% ; range 2% = correction 30% jusqu'à 3% = correction 45%, au delà idem.
+    expo_low<-if (range<=3) {(expo_low<-1-15*range/100)} else {expo_low<-0.55}
+
+print (expo_top)
+print (expo_low)
     
- #   colI<- ifelse(colB[i]>=(colB[1]*(1+range/100)),colI+(1-expo_top),colI)
-  #  colI<- ifelse(colB[i]<=(colB[1]*(1-range/100)),colI+(1-expo_low),colI)
-  #  colI<-min(max(colI,0),1)
-   #  print(colI)
+    colI<- ifelse(colB[i]>=(colB[1]*(1+range/100)),colI+(1-expo_top),colI)
+    colI<- ifelse(colB[i]<=(colB[1]*(1-range/100)),colI+(1-expo_low),colI)
+    colI<-min(max(colI,0),1)
+     print(colI)
 
 
     if (i == 1) {      # l'expo ne peut pas augmenter lorsqu'elle a baissé
