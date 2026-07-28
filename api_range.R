@@ -199,8 +199,10 @@ print(colI)
  # ajustement sortie de range à - x% hedge - enlever les # dessous sans aucun autre changement
     ##expo_top<-((colD/(colB[1]*(1+range/100))-COL_F)*9)/(colD/(colB[1]*(1+range/100)))
     ##expo_low<-(COL_FF-colD/(colB[1]*(1-range/100)))*9/(colD/(colB[1]*(1-range/100)))
-    expo_top<-if (range<=3) {(expo_top<-1-15*range/100)} else {expo_top<-0.55} # sortie de range corrigée selon range de 0% à 3% - range 1% = correction 15% ; range 2% = correction 30% jusqu'à 3% = correction 45%, au delà idem.
-    expo_low<-if (range<=3) {(expo_low<-1-15*range/100)} else {expo_low<-0.55}
+    expo_top<-0.85
+   expo_low<-0.85
+   #expo_top<-if (range<=3) {(expo_top<-1-15*range/100)} else {expo_top<-0.55} # sortie de range corrigée selon range de 0% à 3% - range 1% = correction 15% ; range 2% = correction 30% jusqu'à 3% = correction 45%, au delà idem.
+   # expo_low<-if (range<=3) {(expo_low<-1-15*range/100)} else {expo_low<-0.55}
 
 print (expo_top)
 print (expo_low)
